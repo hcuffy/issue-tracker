@@ -3,8 +3,10 @@ const express = require('express');
 const routes = require('./routes');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
-
+const mongoose = require('mongoose');
 const app = express();
+
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/issuetracker');
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -13,7 +15,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json('*/*'));
 app.use(helmet.xssFilter());
-app.use(helmet.noSniff());
 app.use(function(req, res, next) {
 	res.header('Access-Control-Allow-Origin', '*');
 	res.header(
