@@ -1,8 +1,10 @@
 # Issue Tracker
 
+The issue tracker application will allow users to create, read, update and delete issues for his/her company.
+
 Follow this README in order to properly run this application.
 
-Live App:
+Live App: https://languid-slope.glitch.me/
 
 ## Prerequisites for Local Installation.
 
