@@ -3,10 +3,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link href="/main.css" rel="stylesheet" type="text/css">
+    <title>Homepage</title>
   </head>
   <body>
-    <p>Hello World</p>
+    <div class="container">
+      <h3>Issue Tracker</h3>
+      <div class="complete-form">
+        <form>
+          <div class="form-group">
+            <label for="issue-title"> Data to Convert:
+           </label>
+            <input class="form-control issue" id="issue-title" type="text" name="title" placeholder="Issue Title*" required>
+            <div class="form-group">
+              <label for="issue-des">Description:</label>
+              <textarea class="form-control" id="issue-des" rows="3" name="description" placeholder="Issues Description*" required></textarea>
+            </div>
+            <label for="created-by">Created by:</label>
+            <input class="form-control" id="created-by" type="text" name="created-by" placeholder="Created-by*" required>
+            <label for="created-by">Assign To:</label>
+            <input class="form-control" type="text" name="data" placeholder="Assigned To (optional)">
+            <label for="created-by">Status:</label>
+            <input class="form-control" type="text" name="data" placeholder="Status (optional)">
+          </div>
+          <button type="submit" class="btn btn-primary">Create Issue</button>
+        </form>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="/main.js"></script>
   </body>
 
 </html>
