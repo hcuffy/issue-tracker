@@ -6,3 +6,11 @@
 h3, h5 {
   text-align: center;
 }
+
+#project-selection {
+  width: 25%;
+}
+
+.issue-section {
+  padding-left: 20px;
+}
