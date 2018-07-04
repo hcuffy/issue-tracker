@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const IssueSchema = new Schema(
 	{
+		project: String,
 		title: String,
 		description: String,
 		creator: String,

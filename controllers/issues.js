@@ -1,10 +1,17 @@
 const Issue = require('../models/issue');
 
 exports.createIssue = (req, res, next) => {
-	const { title, description, creator, assignee, status } = req.body;
-	console.log(req);
-	res.send(req.originalUrl);
+	var { project, title, description, creator, assignee, status } = req.body;
+
+	if (assignee == null) {
+		assignee = '';
+	}
+	if (status == null) {
+		status = '';
+	}
+
 	const newIssue = new Issue({
+		project,
 		title,
 		description,
 		creator,
