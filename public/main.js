@@ -28,4 +28,9 @@ $(document).ready(function() {
 		document.getElementById('issue-form').action = '/new/' + project;
 		document.getElementById('project-type').value = project;
 	});
+
+	$('#issue-project').change(function() {
+		var project = document.getElementById('issue-project').value;
+		alert(project);
+	});
 });
