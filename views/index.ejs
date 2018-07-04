@@ -12,10 +12,17 @@
       <h3>Issue Tracker</h3>
       <div class="complete-form">
         <h5>Create a new issue</h3>
-        <form action="/new/test" method="post">
+        <div class="form-group">
+          <label for="project-selection">Select Project:</label>
+          <select name="project" class="form-control" id="project-selection">
+            <option>FCC</option>
+            <option>Testing</option>
+            <option>Javascript</option>
+          </select>
+        </div>
+        <form id='issue-form' action="/new/FCC" method="post">
           <div class="form-group">
-            <label for="issue-title"> Data to Convert:
-           </label>
+            <label for="issue-title"> Data to Convert:</label>
             <input class="form-control issue" id="issue-title" type="text" name="title" placeholder="Issue Title*" required>
             <div class="form-group">
               <label for="issue-des">Description:</label>
@@ -27,12 +34,22 @@
             <input class="form-control" type="text" name="assignee" placeholder="Assigned To (optional)">
             <label for="created-by">Status:</label>
             <input class="form-control" type="text" name="status" placeholder="Status (optional)">
+            <input id="project-type" class="form-control" type="hidden" name="project" value="FCC">
           </div>
           <button type="submit" class="btn btn-primary">Create Issue</button>
         </form>
       </div>
-      <div class="complete-form">
+      <div class="complete-form issue-section">
         <h5>Issue list</h3>
+          <div class="form-group">
+            <label for="project-selection">Select Project:</label>
+            <select class="form-control" id="issue-project">
+              <option>All</option>
+              <option>FCC</option>
+              <option>Testing</option>
+              <option>Javascript</option>
+            </select>
+          </div>
       </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
