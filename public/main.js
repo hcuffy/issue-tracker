@@ -23,4 +23,9 @@ $(document).ready(function() {
 	document.getElementById('created-by').addEventListener('input', function() {
 		this.setCustomValidity('');
 	});
+	$('#project-selection').click(function changeFormAction() {
+		var project = document.getElementById('project-selection').value;
+		document.getElementById('issue-form').action = '/new/' + project;
+		document.getElementById('project-type').value = project;
+	});
 });
