@@ -1,10 +1,22 @@
 const Issue = require('../models/issue');
 
-exports.getMyPolls = (req, res, next) => {
-	Issue.find({}, (err, issues) => {
-		if (err) return next(err);
+exports.getIssues = (req, res, next) => {
 
-		res.render('issues', { issues });
+const {project} = req.query;
+let dbIssues=[]
+	Issue.find({}, (err, issues) => {
+		if (err)
+		   return next(err);
+if(project == 'All'){
+	dbIssues = issues;
+		res.render('issues', { dbIssues });
+
+}else{
+ dbIssues = issues.filter(issue => issue.project == project);
+
+
+res.render('issues', { dbIssues });
+}
 	});
 };
 exports.createIssue = (req, res, next) => {
