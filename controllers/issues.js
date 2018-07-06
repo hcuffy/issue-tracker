@@ -1,22 +1,19 @@
 const Issue = require('../models/issue');
 
 exports.getIssues = (req, res, next) => {
-
-const {project} = req.query;
-let dbIssues=[]
+	const { project } = req.query;
+	let dbIssues = [];
 	Issue.find({}, (err, issues) => {
-		if (err)
-		   return next(err);
-if(project == 'All'){
-	dbIssues = issues;
-		res.render('issues', { dbIssues });
-
-}else{
- dbIssues = issues.filter(issue => issue.project == project);
-
-
-res.render('issues', { dbIssues });
-}
+		if (err) {
+			return next(err);
+		}
+		if (project == 'All') {
+			dbIssues = issues;
+			res.render('issues', { dbIssues });
+		} else {
+			dbIssues = issues.filter(issue => issue.project == project);
+			res.render('issues', { dbIssues });
+		}
 	});
 };
 exports.createIssue = (req, res, next) => {
@@ -40,8 +37,17 @@ exports.createIssue = (req, res, next) => {
 	});
 
 	newIssue.save(err => {
-		if (err) return next(err);
+		if (err) {
+			return next(err);
+		}
 	});
 
 	res.render('index');
+};
+
+exports.deleteIssue = (req, res, next) => {
+	Issue.findByIdAndRemove(req.params.id, (err, issue) => {
+		if (err) return err;
+		res.end('success');
+	});
 };

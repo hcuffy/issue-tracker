@@ -56,13 +56,13 @@
         </form>
 
         <% for (var i = 0; i < dbIssues.length; i++) { %>
-      <div class="display-issue">
-        <span><%= dbIssues[i].title %></span>
-      <button id="<%= dbIssues[i]._id %>" class="btn btn-warning"> Delete Issue</button></a>
-
-      <button id="<%= dbIssues[i]._id %>" class="btn btn-danger"> Delete Issue</button></a>
-  </div>
-            <% } %>
+          <div class="display-issue">
+            <span><%= dbIssues[i].title %></span>
+            <button id="<%= dbIssues[i]._id %>" class="btn btn-warning issue-btn">Close</button></a>
+            <button id="<%= dbIssues[i]._id %>" class="btn btn-danger issue-btn delete-btn
+">Delete</button></a>
+          </div>
+        <% } %>
 
       </div>
     </div>

@@ -23,5 +23,21 @@ $(document).ready(function() {
 	document.getElementById('created-by').addEventListener('input', function() {
 		this.setCustomValidity('');
 	});
-
+	$('.delete-btn').click(function() {
+		let id = this.id;
+		$.ajax({
+			url: '/issue/removal/' + id,
+			type: 'DELETE',
+			data: {
+				id: id
+			},
+			success: function(result) {
+				// alert(result);
+				window.location.reload();
+			},
+			error: function() {
+				alert('The item cannot be deleted at this time.');
+			}
+		});
+	});
 });

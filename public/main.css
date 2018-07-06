@@ -16,19 +16,25 @@ h3, h5 {
 }
 
 #issue-project {
-  display:inline-block;
+  display: inline-block;
   width: 25%;
 }
 
-.find-btn{
-  display:inline-block;
-margin-bottom: 7px;
+.find-btn {
+  display: inline-block;
+  margin-bottom: 7px;
 }
 
-.display-issue{
- border: solid;
- border-width: 2px;
- margin-top: 10px;
- padding: 10px 10px 10px 10px;
- height: 100px;
+.display-issue {
+  border: solid;
+  border-width: 2px;
+  margin-top: 10px;
+  padding: 10px 10px 10px 10px;
+  height: 100px;
+}
+
+.issue-btn {
+  font-size: 11px;
+  height: 20px;
+  line-height: 0px;
 }
