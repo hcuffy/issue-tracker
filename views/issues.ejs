@@ -56,12 +56,24 @@
         </form>
 
         <% for (var i = 0; i < dbIssues.length; i++) { %>
-          <div class="display-issue">
-            <span><%= dbIssues[i].title %></span>
-            <button id="<%= dbIssues[i]._id %>" class="btn btn-warning issue-btn">Close</button></a>
-            <button id="<%= dbIssues[i]._id %>" class="btn btn-danger issue-btn delete-btn
-">Delete</button></a>
-          </div>
+            <div class="display-issue">
+              <span>Issue ID: <%= dbIssues[i].id %></span>
+              <% if(dbIssues[i].open){ %>
+                    <span>State: Open</span>
+               <% }else{ %>
+                    <span>State: Closed</span>
+                <%}%>
+              <span><%= dbIssues[i].title %></span>
+              <span><%= dbIssues[i].description %></span>
+              <span><%= dbIssues[i].creator %></span><span><%= dbIssues[i].assignee %></span>
+              <% if(dbIssues[i].open){ %>
+                  <button id="<%= dbIssues[i]._id %>" class="btn btn-warning issue-btn">Close</button></a>
+               <% }else{ %>
+                  <button id="<%= dbIssues[i]._id %>" class="btn btn-warning issue-btn">Re-open</button></a>
+                <%}%>
+              <button id="<%= dbIssues[i]._id %>" class="btn btn-danger issue-btn delete-btn">Delete</button></a>
+            </div>
+
         <% } %>
 
       </div>
