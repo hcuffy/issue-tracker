@@ -37,7 +37,6 @@ $(document).ready(function() {
 	$('.delete-btn').click(function() {
 		let id = this.id;
 		let project = this.value;
-		console.log(project);
 		$.ajax({
 			url: '/issues/' + project + '/' + id,
 			type: 'DELETE',
@@ -48,7 +47,7 @@ $(document).ready(function() {
 				window.location.reload();
 			},
 			error: function() {
-				alert('The item cannot be deleted at this time.');
+				alert('Issue ' + id + 'could not be deleted.');
 			}
 		});
 	});

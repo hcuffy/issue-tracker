@@ -57,8 +57,11 @@ exports.createIssue = (req, res, next) => {
 };
 
 exports.deleteIssue = (req, res, next) => {
-	Issue.findByIdAndRemove(req.params.id, (err, issue) => {
-		if (err) return err;
+	Issue.findByIdAndRemove(req.params.id, err => {
+		console.log(err);
+		if (err) {
+			return next(err);
+		}
 		res.end('success');
 	});
 };
