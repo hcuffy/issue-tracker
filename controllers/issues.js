@@ -1,8 +1,9 @@
 const Issue = require('../models/issue');
 
 exports.getIssues = (req, res, next) => {
-	const { project } = req.query;
+	const { project, filter } = req.query;
 	let dbIssues = [];
+
 	Issue.find({}, (err, issues) => {
 		if (err) {
 			return next(err);
@@ -11,7 +12,13 @@ exports.getIssues = (req, res, next) => {
 			dbIssues = issues;
 			res.render('issues', { dbIssues });
 		} else {
-			dbIssues = issues.filter(issue => issue.project == project);
+			dbIssues = issues.filter(issue => {
+				let projectfilter = issue.project == project;
+				if (filter == 'on') {
+					projectfilter = issue.open == false;
+				}
+				return projectfilter;
+			});
 			res.render('issues', { dbIssues });
 		}
 	});

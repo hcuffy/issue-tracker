@@ -34,7 +34,6 @@ $(document).ready(function() {
 				id: id
 			},
 			success: function(result) {
-				// alert(result);
 				window.location.reload();
 			},
 			error: function() {

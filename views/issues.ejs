@@ -59,13 +59,15 @@
             <div class="display-issue">
               <span>Issue ID: <%= dbIssues[i].id %></span>
               <% if(dbIssues[i].open){ %>
-                    <span>State: Open</span>
+                    <span id="issue-open">State: Open</span>
                <% }else{ %>
-                    <span>State: Closed</span>
+                    <span id="issue-open">State: Closed</span>
                 <%}%>
-              <span><%= dbIssues[i].title %></span>
-              <span><%= dbIssues[i].description %></span>
-              <span>Created By: <%= dbIssues[i].creator %></span> <span>Assigned To: <%= dbIssues[i].assignee %></span>
+                <br>
+              <span>Title: <%= dbIssues[i].title %></span><br>
+              <span>Description: <%= dbIssues[i].description %></span><br>
+              <span>Created By: <%= dbIssues[i].creator %></span> <span>Assigned To: <%= dbIssues[i].assignee %></span><br>
+              <span>Created On: <%= dbIssues[i].createdAt %></span>  <span>Updated On: <%= dbIssues[i].updatedAt %></span>
               <% if(dbIssues[i].open){ %>
                   <button id="<%= dbIssues[i]._id %>" class="btn btn-warning issue-btn state-btn">Close</button></a>
                <% }else{ %>
@@ -73,7 +75,7 @@
                 <%}%>
               <button id="<%= dbIssues[i]._id %>" value= "<%= dbIssues[i].project %>" class="btn btn-danger issue-btn delete-btn">Delete</button></a>
             </div>
-
+            
         <% } %>
 
       </div>
