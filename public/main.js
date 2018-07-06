@@ -25,8 +25,10 @@ $(document).ready(function() {
 	});
 	$('.delete-btn').click(function() {
 		let id = this.id;
+		let project = this.value;
+		console.log(project);
 		$.ajax({
-			url: '/issue/removal/' + id,
+			url: '/issues/' + project + '/' + id,
 			type: 'DELETE',
 			data: {
 				id: id
