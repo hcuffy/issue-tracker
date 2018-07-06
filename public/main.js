@@ -23,6 +23,17 @@ $(document).ready(function() {
 	document.getElementById('created-by').addEventListener('input', function() {
 		this.setCustomValidity('');
 	});
+
+	$('#project-selection').change(function() {
+		let action = this.value;
+		$('#issue-form').attr('action', '/new/' + action);
+	});
+
+	$('#issue-project').change(function() {
+		let action = this.value;
+		$('#issue-form').attr('action', '/issues/' + action);
+	});
+
 	$('.delete-btn').click(function() {
 		let id = this.id;
 		let project = this.value;

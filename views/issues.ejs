@@ -13,7 +13,7 @@
       <div class="complete-form create-form">
         <h5>Create a new issue</h3>
 
-        <form id='issue-form' action="/new/FCC" method="post">
+        <form id='issue-form' action="/new/" method="post">
           <div class="form-group">
             <label for="project-selection">Select Project:</label>
             <select name="project" class="form-control" id="project-selection">
@@ -42,15 +42,19 @@
       <div class="complete-form issue-section">
         <h5>Issue list</h3>
           <label for="project-selection">Select Project:</label>
-        <form action="/issues/FCC" method="get">
+        <form action="/issues/" method="get">
           <div class="form-group find-project">
 
             <select name="project" class="form-control" id="issue-project">
-              <option>ALL</option>
+              <option>All</option>
               <option>FCC</option>
               <option>Testing</option>
               <option>Javascript</option>
             </select>
+            <div class="form-check issue-state">
+              <input name="filter" type="checkbox" class="form-check-input" id="state">
+              <label class="form-check-label" for="state">Closed Issues.</label>
+            </div>
           <button type="submit" class="btn btn-primary find-btn">Find</button>
           </div>
         </form>
@@ -75,7 +79,7 @@
                 <%}%>
               <button id="<%= dbIssues[i]._id %>" value= "<%= dbIssues[i].project %>" class="btn btn-danger issue-btn delete-btn">Delete</button></a>
             </div>
-            
+
         <% } %>
 
       </div>

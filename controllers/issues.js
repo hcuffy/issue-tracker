@@ -9,7 +9,12 @@ exports.getIssues = (req, res, next) => {
 			return next(err);
 		}
 		if (project == 'All') {
-			dbIssues = issues;
+			if (filter == 'on') {
+				dbIssues = issues.filter(issue => issue.open == false);
+			} else {
+				dbIssues = issues;
+			}
+
 			res.render('issues', { dbIssues });
 		} else {
 			dbIssues = issues.filter(issue => {
@@ -25,7 +30,6 @@ exports.getIssues = (req, res, next) => {
 };
 exports.createIssue = (req, res, next) => {
 	var { project, title, description, creator, assignee, status } = req.body;
-
 	if (assignee == null) {
 		assignee = '';
 	}
