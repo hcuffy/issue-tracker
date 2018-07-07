@@ -86,8 +86,6 @@ $(document).ready(function() {
 	});
 
 	$('.edit-submit').click(function() {
-		toastr.success('Have fun storming the castle!', 'Miracle Max Says');
-
 		let id = $('.id').val();
 		let project = $('#project-editor').val();
 		let data = {
@@ -104,9 +102,13 @@ $(document).ready(function() {
 			data: data,
 			success: function(result) {
 				window.location.reload();
+				alert('test');
 			},
 			error: function() {
-				alert('Issue ' + id + ' could not be deleted.');
+				$.alert({
+					title: 'Error!',
+					content: 'Issue ' + id + ' could not be deleted.'
+				});
 			}
 		});
 	});
