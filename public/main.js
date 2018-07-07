@@ -86,6 +86,8 @@ $(document).ready(function() {
 	});
 
 	$('.edit-submit').click(function() {
+		toastr.success('Have fun storming the castle!', 'Miracle Max Says');
+
 		let id = $('.id').val();
 		let project = $('#project-editor').val();
 		let data = {

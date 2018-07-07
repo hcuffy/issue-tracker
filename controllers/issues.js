@@ -29,7 +29,7 @@ exports.getIssues = (req, res, next) => {
 	});
 };
 exports.createIssue = (req, res, next) => {
-	var { project, title, description, creator, assignee, status } = req.body;
+	let { project, title, description, creator, assignee, status } = req.body;
 	if (assignee == null) {
 		assignee = '';
 	}
@@ -67,5 +67,29 @@ exports.deleteIssue = (req, res, next) => {
 };
 
 exports.editIssue = (req, res, next) => {
-	console.log(req);
+	const { id } = req.params;
+	let { project, title, description, creator, assignee, status } = req.body;
+
+	Issue.findByIdAndUpdate(
+		id,
+		{
+			$set: {
+				project: project,
+				title: title,
+				description: description,
+				creator: creator,
+				assignee: assignee,
+				status: status
+			}
+		},
+		{
+			new: true
+		},
+		function(err, issue) {
+			if (err) {
+				return next(err);
+			}
+		}
+	);
+	res.end('success');
 };
