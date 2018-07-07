@@ -95,7 +95,7 @@
               <h5 class="edit-header">Edit Issue: <span id="edit-id"></span></h5>
       </div>
       <div class="edit-form">
-        <form id='edit-issue-form' action="/edit/" method="put">
+        <div id='edit-issue-form'>
           <div class="form-group">
             <label for="project-editor">Select Project:</label>
             <select name="project" class="form-control" id="project-editor">
@@ -117,10 +117,11 @@
             <input class="form-control new-assignee" type="text" name="assignee" placeholder="Assigned To (optional)">
             <label>Edit Status:</label>
             <input class="form-control new-status" type="text" name="status" placeholder="Status (optional)">
+            <input class="form-control id" type="hidden" name="id">
           </div>
-          <button type="submit" class="btn btn-success">Save</button>
+          <button class="btn btn-success edit-submit">Save</button>
           <button type="submit" class="btn btn-danger close-btn" data-dismiss="modal">Close</button>
-        </form>
+        </div>
       </div>
     </div>
     </div>

@@ -64,6 +64,11 @@ $(document).ready(function() {
 
 			dataArr.push(info);
 		}
+
+		$('#edit-issue-form').attr(
+			'action',
+			'/edit/' + dataArr[15] + '/' + dataArr[0]
+		);
 		$('#edit-id').text(dataArr[0]);
 		$('#project-editor').val(dataArr[15]);
 		$('.new-title').val(dataArr[3]);
@@ -71,12 +76,36 @@ $(document).ready(function() {
 		$('.new-creator').val(dataArr[9]);
 		$('.new-assignee').val(dataArr[10]);
 		$('.new-status').val(dataArr[7]);
-		console.log(dataArr);
+		$('.id').val(dataArr[0]);
 		$('#edit-form').modal();
 	});
 
 	$('#project-editor').change(function() {
 		let action = this.value;
 		$('#edit-issue-form').attr('action', '/edit/' + action);
+	});
+
+	$('.edit-submit').click(function() {
+		let id = $('.id').val();
+		let project = $('#project-editor').val();
+		let data = {
+			project: project,
+			title: $('.new-title').val(),
+			description: $('.new-description').val(),
+			creator: $('.new-creator').val(),
+			assignee: $('.new-assignee').val(),
+			status: $('.new-status').val()
+		};
+		$.ajax({
+			url: '/edit/' + project + '/' + id,
+			type: 'PUT',
+			data: data,
+			success: function(result) {
+				window.location.reload();
+			},
+			error: function() {
+				alert('Issue ' + id + ' could not be deleted.');
+			}
+		});
 	});
 });

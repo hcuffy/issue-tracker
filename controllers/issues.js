@@ -65,3 +65,7 @@ exports.deleteIssue = (req, res, next) => {
 		res.end('success');
 	});
 };
+
+exports.editIssue = (req, res, next) => {
+	console.log(req);
+};
