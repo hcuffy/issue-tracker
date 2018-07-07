@@ -58,3 +58,11 @@ h3, h5 {
 .edit-header {
   float: left;
 }
+
+.edit-form {
+  padding: 10px 10px 10px 10px;
+}
+
+.close-btn {
+  float: right;
+}
