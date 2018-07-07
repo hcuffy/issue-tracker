@@ -61,49 +61,47 @@
 
         <% for (var i = 0; i < dbIssues.length; i++) { %>
             <div class="display-issue">
-              <span>Issue ID: <%= dbIssues[i].id %></span>
+              <span><b>Issue ID: </b><%= dbIssues[i].id %></span>
               <% if(dbIssues[i].open){ %>
-                    <span id="issue-open">State: Open</span>
+                    <span id="issue-open"><b>State:</b> Open</span>
                <% }else{ %>
-                    <span id="issue-open">State: Closed</span>
+                    <span id="issue-open"><b>State:</b> Closed</span>
                 <%}%>
                 <br>
-              <span>Title: <%= dbIssues[i].title %></span><br>
-              <span>Description: <%= dbIssues[i].description %></span><br>
-              <span>Created By: <%= dbIssues[i].creator %></span> <span>Assigned To: <%= dbIssues[i].assignee %></span><br>
-              <span>Created On: <%= dbIssues[i].createdAt %></span>  <span>Updated On: <%= dbIssues[i].updatedAt %></span>
+              <span><b>Title:</b> <%= dbIssues[i].title %></span><br>
+              <span><b>Description:</b> <%= dbIssues[i].description %></span><br>
+              <span><b>Created by:</b> <%= dbIssues[i].creator %></span> <span><b>Assigned to:</b> <%= dbIssues[i].assignee %></span><br>
+              <span><b>Created on:</b> <%= dbIssues[i].createdAt %></span>  <span><b>Updated on:</b> <%= dbIssues[i].updatedAt %></span><br>
+              <span><b>Project:</b> <%= dbIssues[i].project %></span><br>
               <% if(dbIssues[i].open){ %>
                   <button id="<%= dbIssues[i]._id %>" class="btn btn-warning issue-btn state-btn">Close</button></a>
                <% }else{ %>
                   <button id="<%= dbIssues[i]._id %>" class="btn btn-warning state-btn">Re-open</button></a>
                 <%}%>
+              <button type="button" class="btn btn-info btn-lg edit-btn" id="Edit-btn">Edit</button>
               <button id="<%= dbIssues[i]._id %>" value= "<%= dbIssues[i].project %>" class="btn btn-danger issue-btn delete-btn">Delete</button></a>
             </div>
 
         <% } %>
       </div>
 <!--  -->
- <button type="button" class="btn btn-default btn-lg" id="myBtn">Login</button>
 
- <div class="modal fade" id="edit-form" role="dialog">
-    <div class="modal-dialog">
-
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="top-div">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h5 class="edit-header">Edit Issue: </h5>
-
+      <div class="modal fade" id="edit-form" role="dialog">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="top-div">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h5 class="edit-header">Edit Issue: </h5>
       </div>
       <div class="edit-form">
         <form id='issue-form' action="/edit/" method="post">
           <div class="form-group">
             <label for="project-selection">Select Project:</label>
             <select name="project" class="form-control" id="project-selection">
-                <option>FCC</option>
-                <option>Testing</option>
-                <option>Javascript</option>
-              </select>
+                      <option>FCC</option>
+                      <option>Testing</option>
+                      <option>Javascript</option>
+                    </select>
           </div>
           <div class="form-group">
             <label for="issue-title"> Data to Convert:</label>
@@ -124,12 +122,8 @@
         </form>
       </div>
     </div>
-
     </div>
     </div>
-
-
-    <!--  -->
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>

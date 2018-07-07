@@ -52,7 +52,17 @@ $(document).ready(function() {
 		});
 	});
 
-	$('#myBtn').click(function() {
-		$('#edit-form').modal();
+	$('#Edit-btn').click(function() {
+		var test = $(this)
+			.parent()
+			.children()
+			.toArray();
+
+		var blue = test[0];
+		// .find('.display-issue')
+		// .children();
+
+		console.log(blue);
+		// $('#edit-form').modal();
 	});
 });
