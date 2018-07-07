@@ -23,7 +23,7 @@
             </select>
           </div>
           <div class="form-group">
-            <label for="issue-title"> Data to Convert:</label>
+            <label for="issue-title"> Title:</label>
             <input class="form-control issue" id="issue-title" type="text" name="title" placeholder="Issue Title*" required>
             <div class="form-group">
               <label for="issue-des">Description:</label>
@@ -70,6 +70,7 @@
                 <br>
               <span><b>Title: </b><%= dbIssues[i].title %></span><br>
               <span><b>Description: </b><%= dbIssues[i].description %></span><br>
+              <span><b>Status: </b><%= dbIssues[i].status %></span><br>
               <span><b>Created by: </b><%= dbIssues[i].creator %></span> <span><b>Assigned to: </b><%= dbIssues[i].assignee %></span><br>
               <span><b>Created on: </b><%= dbIssues[i].createdAt %></span>  <span><b>Updated on: </b><%= dbIssues[i].updatedAt %></span><br>
               <span><b>Project: </b><%= dbIssues[i].project %></span><br>
@@ -91,31 +92,31 @@
           <div class="modal-content">
             <div class="top-div">
               <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h5 class="edit-header">Edit Issue: </h5>
+              <h5 class="edit-header">Edit Issue: <span id="edit-id"></span></h5>
       </div>
       <div class="edit-form">
-        <form id='issue-form' action="/edit/" method="post">
+        <form id='edit-issue-form' action="/edit/" method="put">
           <div class="form-group">
-            <label for="project-selection">Select Project:</label>
-            <select name="project" class="form-control" id="project-selection">
+            <label for="project-editor">Select Project:</label>
+            <select name="project" class="form-control" id="project-editor">
                       <option>FCC</option>
                       <option>Testing</option>
                       <option>Javascript</option>
                     </select>
           </div>
           <div class="form-group">
-            <label for="issue-title"> Data to Convert:</label>
-            <input class="form-control issue" id="issue-title" type="text" name="title" placeholder="Issue Title*" required>
+            <label for="issue-title"> Edit Title:</label>
+            <input class="form-control issue new-title" id="issue-title" type="text" name="title" placeholder="Issue Title*" required>
             <div class="form-group">
-              <label for="issue-des">Description:</label>
-              <textarea class="form-control" id="issue-des" rows="3" name="description" placeholder="Issues Description*" required></textarea>
+              <label for="issue-des">Edit Description:</label>
+              <textarea class="form-control new-description" id="issue-des" rows="3" name="description" placeholder="Issues Description*" required></textarea>
             </div>
-            <label for="created-by">Created by:</label>
-            <input class="form-control" id="created-by" type="text" name="creator" placeholder="Created-by*" required>
-            <label>Assign To:</label>
-            <input class="form-control" type="text" name="assignee" placeholder="Assigned To (optional)">
-            <label>Status:</label>
-            <input class="form-control" type="text" name="status" placeholder="Status (optional)">
+            <label for="created-by">Edit Creator:</label>
+            <input class="form-control new-creator" id="created-by" type="text" name="creator" placeholder="Created-by*" required>
+            <label>Edit Assignee:</label>
+            <input class="form-control new-assignee" type="text" name="assignee" placeholder="Assigned To (optional)">
+            <label>Edit Status:</label>
+            <input class="form-control new-status" type="text" name="status" placeholder="Status (optional)">
           </div>
           <button type="submit" class="btn btn-success">Save</button>
           <button type="submit" class="btn btn-danger close-btn" data-dismiss="modal">Close</button>

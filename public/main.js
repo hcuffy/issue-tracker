@@ -64,7 +64,19 @@ $(document).ready(function() {
 
 			dataArr.push(info);
 		}
+		$('#edit-id').text(dataArr[0]);
+		$('#project-editor').val(dataArr[15]);
+		$('.new-title').val(dataArr[3]);
+		$('.new-description').val(dataArr[5]);
+		$('.new-creator').val(dataArr[9]);
+		$('.new-assignee').val(dataArr[10]);
+		$('.new-status').val(dataArr[7]);
 		console.log(dataArr);
-		// $('#edit-form').modal();
+		$('#edit-form').modal();
+	});
+
+	$('#project-editor').change(function() {
+		let action = this.value;
+		$('#edit-issue-form').attr('action', '/edit/' + action);
 	});
 });
