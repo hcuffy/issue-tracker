@@ -49,3 +49,12 @@ h3, h5 {
 #issue-closed {
   color: green
 }
+
+.top-div {
+  padding: 10px 10px 10px 10px;
+  display: inline-block;
+}
+
+.edit-header {
+  float: left;
+}

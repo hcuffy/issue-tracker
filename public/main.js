@@ -47,8 +47,12 @@ $(document).ready(function() {
 				window.location.reload();
 			},
 			error: function() {
-				alert('Issue ' + id + 'could not be deleted.');
+				alert('Issue ' + id + ' could not be deleted.');
 			}
 		});
+	});
+
+	$('#myBtn').click(function() {
+		$('#edit-form').modal();
 	});
 });

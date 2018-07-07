@@ -81,10 +81,68 @@
             </div>
 
         <% } %>
+      </div>
+<!--  -->
+ <button type="button" class="btn btn-default btn-lg" id="myBtn">Login</button>
+
+ <div class="modal fade" id="edit-form" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="top-div">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h5 class="edit-header">Edit Issue: </h5>
 
       </div>
+      <div class="modal-body">
+        <!-- <form role="form">
+          <div class="form-group">
+            <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
+            <input type="text" class="form-control" id="usrname" placeholder="Enter email">
+          </div>
+          <div class="form-group">
+            <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
+            <input type="text" class="form-control" id="psw" placeholder="Enter password">
+          </div> -->
+        <form id='issue-form' action="/new/" method="post">
+          <div class="form-group">
+            <label for="project-selection">Select Project:</label>
+            <select name="project" class="form-control" id="project-selection">
+                <option>FCC</option>
+                <option>Testing</option>
+                <option>Javascript</option>
+              </select>
+          </div>
+          <div class="form-group">
+            <label for="issue-title"> Data to Convert:</label>
+            <input class="form-control issue" id="issue-title" type="text" name="title" placeholder="Issue Title*" required>
+            <div class="form-group">
+              <label for="issue-des">Description:</label>
+              <textarea class="form-control" id="issue-des" rows="3" name="description" placeholder="Issues Description*" required></textarea>
+            </div>
+            <label for="created-by">Created by:</label>
+            <input class="form-control" id="created-by" type="text" name="creator" placeholder="Created-by*" required>
+            <label for="created-by">Assign To:</label>
+            <input class="form-control" type="text" name="assignee" placeholder="Assigned To (optional)">
+            <label for="created-by">Status:</label>
+            <input class="form-control" type="text" name="status" placeholder="Status (optional)">
+          </div>
+          <!--  -->
+          <button type="submit" class="btn btn-success">Save</button>
+          <button type="submit" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+        </form>
+      </div>
+    </div>
+
+    </div>
+    </div>
+
+
+    <!--  -->
     </div>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/main.js"></script>
   </body>
 
