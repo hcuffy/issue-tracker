@@ -31,9 +31,9 @@
             </div>
             <label for="created-by">Created by:</label>
             <input class="form-control" id="created-by" type="text" name="creator" placeholder="Created-by*" required>
-            <label for="created-by">Assign To:</label>
+            <label>Assign To:</label>
             <input class="form-control" type="text" name="assignee" placeholder="Assigned To (optional)">
-            <label for="created-by">Status:</label>
+            <label>Status:</label>
             <input class="form-control" type="text" name="status" placeholder="Status (optional)">
           </div>
           <button type="submit" class="btn btn-primary">Create Issue</button>
@@ -68,11 +68,11 @@
                     <span id="issue-open"><b>State:</b> Closed</span>
                 <%}%>
                 <br>
-              <span><b>Title:</b> <%= dbIssues[i].title %></span><br>
-              <span><b>Description:</b> <%= dbIssues[i].description %></span><br>
-              <span><b>Created by:</b> <%= dbIssues[i].creator %></span> <span><b>Assigned to:</b> <%= dbIssues[i].assignee %></span><br>
-              <span><b>Created on:</b> <%= dbIssues[i].createdAt %></span>  <span><b>Updated on:</b> <%= dbIssues[i].updatedAt %></span><br>
-              <span><b>Project:</b> <%= dbIssues[i].project %></span><br>
+              <span><b>Title: </b><%= dbIssues[i].title %></span><br>
+              <span><b>Description: </b><%= dbIssues[i].description %></span><br>
+              <span><b>Created by: </b><%= dbIssues[i].creator %></span> <span><b>Assigned to: </b><%= dbIssues[i].assignee %></span><br>
+              <span><b>Created on: </b><%= dbIssues[i].createdAt %></span>  <span><b>Updated on: </b><%= dbIssues[i].updatedAt %></span><br>
+              <span><b>Project: </b><%= dbIssues[i].project %></span><br>
               <% if(dbIssues[i].open){ %>
                   <button id="<%= dbIssues[i]._id %>" class="btn btn-warning issue-btn state-btn">Close</button></a>
                <% }else{ %>
@@ -112,9 +112,9 @@
             </div>
             <label for="created-by">Created by:</label>
             <input class="form-control" id="created-by" type="text" name="creator" placeholder="Created-by*" required>
-            <label for="created-by">Assign To:</label>
+            <label>Assign To:</label>
             <input class="form-control" type="text" name="assignee" placeholder="Assigned To (optional)">
-            <label for="created-by">Status:</label>
+            <label>Status:</label>
             <input class="form-control" type="text" name="status" placeholder="Status (optional)">
           </div>
           <button type="submit" class="btn btn-success">Save</button>

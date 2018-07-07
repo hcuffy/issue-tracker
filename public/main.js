@@ -53,16 +53,18 @@ $(document).ready(function() {
 	});
 
 	$('#Edit-btn').click(function() {
-		var test = $(this)
+		var data = $(this)
 			.parent()
 			.children()
 			.toArray();
+		let dataArr = [];
 
-		var blue = test[0];
-		// .find('.display-issue')
-		// .children();
+		for (var i = 0; i < data.length - 4; i++) {
+			let info = data[i].innerHTML.replace(/.*\>/g, '');
 
-		console.log(blue);
+			dataArr.push(info);
+		}
+		console.log(dataArr);
 		// $('#edit-form').modal();
 	});
 });
