@@ -70,6 +70,23 @@ exports.editIssue = (req, res, next) => {
 	const { id } = req.params;
 	let { project, title, description, creator, assignee, status } = req.body;
 
+	Issue.findById(id, function(err, issue) {
+		if (err) {
+			return next(err);
+		}
+		console.log(issue.description);
+		if (
+			project == issue.project &&
+			title == issue.title &&
+			description == issue.description &&
+			creator == issue.creator &&
+			assignee == issue.assignee &&
+			status == issue.status
+		) {
+			res.end('There are no fields to update.');
+		}
+	});
+
 	Issue.findByIdAndUpdate(
 		id,
 		{
@@ -91,5 +108,5 @@ exports.editIssue = (req, res, next) => {
 			}
 		}
 	);
-	res.end('success');
+	res.end('Issue ' + id + ' was successfully updated.');
 };

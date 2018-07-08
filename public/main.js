@@ -103,7 +103,7 @@ $(document).ready(function() {
 			success: function(result) {
 				$.confirm({
 					title: 'Success!',
-					content: 'Issue ' + id + ' was successfully updated.',
+					content: result,
 					type: 'green',
 					typeAnimated: true,
 					buttons: {
