@@ -101,13 +101,27 @@ $(document).ready(function() {
 			type: 'PUT',
 			data: data,
 			success: function(result) {
-				window.location.reload();
-				alert('test');
+				$.confirm({
+					title: 'Success!',
+					content: 'Issue ' + id + ' was successfully updated.',
+					type: 'green',
+					typeAnimated: true,
+					buttons: {
+						ok: {
+							text: 'OK',
+							btnClass: 'btn-green',
+							action: function() {
+								window.location.reload();
+							}
+						}
+					}
+				});
 			},
 			error: function() {
 				$.alert({
 					title: 'Error!',
-					content: 'Issue ' + id + ' could not be deleted.'
+					content: 'Issue ' + id + ' could not be deleted.',
+					type: 'red'
 				});
 			}
 		});
