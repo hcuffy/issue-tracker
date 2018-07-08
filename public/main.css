@@ -1,10 +1,18 @@
+body {
+  background-color: #c1fff5;
+}
+
+h3, h5 {
+  text-align: center;
+}
+
 .complete-form {
   width: 50%;
   float: left;
 }
 
-h3, h5 {
-  text-align: center;
+.create-form {
+  background-color: #dcfcdb;
 }
 
 #project-selection {
