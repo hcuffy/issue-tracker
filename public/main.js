@@ -1,26 +1,24 @@
 $(document).ready(function() {
-	document
-		.getElementById('issue-title')
-		.addEventListener('invalid', function() {
-			this.setCustomValidity('Please enter an issue title.');
-		});
+	document.getElementById('issue-title').addEventListener('invalid', () => {
+		this.setCustomValidity('Please enter an issue title.');
+	});
 
-	document.getElementById('issue-title').addEventListener('input', function() {
+	document.getElementById('issue-title').addEventListener('input', () => {
 		this.setCustomValidity('');
 	});
 
-	document.getElementById('issue-des').addEventListener('invalid', function() {
+	document.getElementById('issue-des').addEventListener('invalid', () => {
 		this.setCustomValidity('Please describe the issue.');
 	});
 
-	document.getElementById('issue-des').addEventListener('input', function() {
+	document.getElementById('issue-des').addEventListener('input', () => {
 		this.setCustomValidity('');
 	});
-	document.getElementById('created-by').addEventListener('invalid', function() {
+	document.getElementById('created-by').addEventListener('invalid', () => {
 		this.setCustomValidity('Please enter the issue creator.');
 	});
 
-	document.getElementById('created-by').addEventListener('input', function() {
+	document.getElementById('created-by').addEventListener('input', () => {
 		this.setCustomValidity('');
 	});
 
