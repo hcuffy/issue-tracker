@@ -58,12 +58,16 @@ exports.createIssue = (req, res, next) => {
 }
 
 exports.deleteIssue = (req, res, next) => {
-	Issue.findByIdAndRemove(req.params.id, err => {
-		console.log(err)
+
+	Issue.findByIdAndRemove(req.params.id, (err, issue) => {
 		if (err) {
 			return next(err)
 		}
-		res.end('success')
+		if (issue == null){
+			res.end('Could not find issue indatabse.')
+		} else {
+			res.end('success')
+		}
 	})
 }
 
@@ -75,39 +79,43 @@ exports.editIssue = (req, res, next) => {
 		if (err) {
 			return next(err)
 		}
-		console.log(issue.description)
+
 		if (
-			project == issue.project &&
+		   project == issue.project &&
 			title == issue.title &&
 			description == issue.description &&
 			creator == issue.creator &&
 			assignee == issue.assignee &&
 			status == issue.status
 		) {
+
 			res.end('There are no fields to update.')
+		} else {
+			Issue.findByIdAndUpdate(
+				id,
+				{
+					$set: {
+						project: project,
+						title: title,
+						description: description,
+						creator: creator,
+						assignee: assignee,
+						status: status
+					}
+				},
+				{
+					new: true
+				},
+				function(err, issue) {
+					if (err) {
+						return next(err)
+					}
+				}
+			)
+			res.end('Issue ' + id + ' was successfully updated.')
 		}
+
 	})
 
-	Issue.findByIdAndUpdate(
-		id,
-		{
-			$set: {
-				project: project,
-				title: title,
-				description: description,
-				creator: creator,
-				assignee: assignee,
-				status: status
-			}
-		},
-		{
-			new: true
-		},
-		function(err, issue) {
-			if (err) {
-				return next(err)
-			}
-		}
-	)
-	res.end('Issue ' + id + ' was successfully updated.')
+
 }
