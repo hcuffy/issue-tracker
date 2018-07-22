@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
 const IssueSchema = new Schema(
 	{
@@ -12,7 +12,7 @@ const IssueSchema = new Schema(
 		status: String
 	},
 	{ timestamps: true }
-);
+)
 
-const ModelClass = mongoose.model('issue', IssueSchema);
-module.exports = ModelClass;
+const ModelClass = mongoose.model('issue', IssueSchema)
+module.exports = ModelClass

@@ -1,41 +1,41 @@
-const Issue = require('../models/issue');
+const Issue = require('../models/issue')
 
 exports.getIssues = (req, res, next) => {
-	const { project, filter } = req.query;
-	let dbIssues = [];
+	const { project, filter } = req.query
+	let dbIssues = []
 
 	Issue.find({}, (err, issues) => {
 		if (err) {
-			return next(err);
+			return next(err)
 		}
 		if (project == 'All') {
 			if (filter == 'on') {
-				dbIssues = issues.filter(issue => issue.open == false);
+				dbIssues = issues.filter(issue => issue.open == false)
 			} else {
-				dbIssues = issues;
+				dbIssues = issues
 			}
 
-			res.render('issues', { dbIssues });
+			res.render('issues', { dbIssues })
 		} else {
 			dbIssues = issues.filter(issue => {
-				let projectfilter = issue.project == project;
+				let projectfilter = issue.project == project
 				if (filter == 'on') {
-					projectfilter = issue.open == false;
+					projectfilter = issue.open == false
 				}
-				return projectfilter;
-			});
-			res.render('issues', { dbIssues });
+				return projectfilter
+			})
+			res.render('issues', { dbIssues })
 		}
-	});
-};
+	})
+}
 
 exports.createIssue = (req, res, next) => {
-	let { project, title, description, creator, assignee, status } = req.body;
+	let { project, title, description, creator, assignee, status } = req.body
 	if (assignee == null) {
-		assignee = '';
+		assignee = ''
 	}
 	if (status == null) {
-		status = '';
+		status = ''
 	}
 
 	const newIssue = new Issue({
@@ -46,36 +46,36 @@ exports.createIssue = (req, res, next) => {
 		assignee,
 		status,
 		open: true
-	});
+	})
 
 	newIssue.save(err => {
 		if (err) {
-			return next(err);
+			return next(err)
 		}
-	});
+	})
 
-	res.render('index');
-};
+	res.render('index')
+}
 
 exports.deleteIssue = (req, res, next) => {
 	Issue.findByIdAndRemove(req.params.id, err => {
-		console.log(err);
+		console.log(err)
 		if (err) {
-			return next(err);
+			return next(err)
 		}
-		res.end('success');
-	});
-};
+		res.end('success')
+	})
+}
 
 exports.editIssue = (req, res, next) => {
-	const { id } = req.params;
-	let { project, title, description, creator, assignee, status } = req.body;
+	const { id } = req.params
+	let { project, title, description, creator, assignee, status } = req.body
 
 	Issue.findById(id, function(err, issue) {
 		if (err) {
-			return next(err);
+			return next(err)
 		}
-		console.log(issue.description);
+		console.log(issue.description)
 		if (
 			project == issue.project &&
 			title == issue.title &&
@@ -84,9 +84,9 @@ exports.editIssue = (req, res, next) => {
 			assignee == issue.assignee &&
 			status == issue.status
 		) {
-			res.end('There are no fields to update.');
+			res.end('There are no fields to update.')
 		}
-	});
+	})
 
 	Issue.findByIdAndUpdate(
 		id,
@@ -105,9 +105,9 @@ exports.editIssue = (req, res, next) => {
 		},
 		function(err, issue) {
 			if (err) {
-				return next(err);
+				return next(err)
 			}
 		}
-	);
-	res.end('Issue ' + id + ' was successfully updated.');
-};
+	)
+	res.end('Issue ' + id + ' was successfully updated.')
+}
