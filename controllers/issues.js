@@ -28,6 +28,7 @@ exports.getIssues = (req, res, next) => {
 		}
 	});
 };
+
 exports.createIssue = (req, res, next) => {
 	let { project, title, description, creator, assignee, status } = req.body;
 	if (assignee == null) {
