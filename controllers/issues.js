@@ -31,30 +31,30 @@ exports.getIssues = (req, res, next) => {
 
 exports.createIssue = (req, res, next) => {
 	let { project, title, description, creator, assignee, status } = req.body
-	if (assignee == null) {
-		assignee = ''
+
+	if (title == '' || description == '' || creator == '') {
+		res.end('These fields cannot be empty.')
+
+	} else {
+
+		const newIssue = new Issue({
+			project,
+			title,
+			description,
+			creator,
+			assignee,
+			status,
+			open: true
+		})
+
+		newIssue.save(err => {
+			if (err) {
+				return next(err)
+			}
+		})
+
+		res.render('index')
 	}
-	if (status == null) {
-		status = ''
-	}
-
-	const newIssue = new Issue({
-		project,
-		title,
-		description,
-		creator,
-		assignee,
-		status,
-		open: true
-	})
-
-	newIssue.save(err => {
-		if (err) {
-			return next(err)
-		}
-	})
-
-	res.render('index')
 }
 
 exports.deleteIssue = (req, res, next) => {
@@ -64,7 +64,7 @@ exports.deleteIssue = (req, res, next) => {
 			return next(err)
 		}
 		if (issue == null){
-			res.end('Could not find issue indatabse.')
+			res.end('Could not find issue in database.')
 		} else {
 			res.end('success')
 		}
