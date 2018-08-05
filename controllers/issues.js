@@ -75,6 +75,11 @@ exports.editIssue = (req, res, next) => {
 	const { id } = req.params
 	let { project, title, description, creator, assignee, status } = req.body
 
+	if (Object.keys(req.body).length === 0 && req.body.constructor === Object){
+		console.log('test')
+		res.end('Missing request body.')
+	}
+
 	Issue.findById(id, function(err, issue) {
 		if (err) {
 			return next(err)
