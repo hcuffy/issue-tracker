@@ -7,10 +7,7 @@ const { JSDOM } = jsdom
 
 chai.use(chaiHttp)
 
-describe('Testing functions', () =>  {
-	// after(() => {
-// 	process.exit()
-// })
+describe('Intergration Testing', () =>  {
 
 	// it('should create issue with all fields', (done)  =>  {
 	// 	let data = {
@@ -73,7 +70,7 @@ describe('Testing functions', () =>  {
 	// 		})
 	// })
 
-// it('should edit issue when one field is changed', (done) =>  {
+	// it('should edit issue when one field is changed', (done) =>  {
 // 	// change one field
 //   	let data = {
 // 		project: 'FCC',
@@ -95,93 +92,81 @@ describe('Testing functions', () =>  {
 // 		})
 // })
 
-	it('should not edit existing issue when there is no data change', (done) =>  {
-		// This should be one-for-one Db data
-		let data = {
-			project: 'FCC',
-			title: 'We are testing and issue' ,
-			description: 'Test has no description',
-			creator: 'Teddy Wells',
-			assignee: 'Brian Smith',
-			open: true,
-			status: 'In-progress'
-		}
-		let id = '5b66e0fa69a96330d435f604' //Insert real DB id here
-		chai.request(server)
-			.put('/edit/FCC/'+ id)
-			.send(data)
-			.end((err, res) => {
-				assert.equal(res.status, 200)
-				assert.equal(res.text, 'There are no fields to update.')
-				done()
-			})
-	})
-
-	it('should not edit if body is empty', (done) =>  {
-		let data = {}
-		let id = '5b66e0d1486b6a30d0c437ed' //Insert real DB id here
-		chai.request(server)
-			.put('/edit/FCC/'+ id)
-			.send(data)
-			.end((err, res) => {
-				assert.equal(res.status, 200)
-				assert.equal(res.text, 'Missing request body.')
-				done()
-			})
-	})
-
-	// it('Add issue to databse', (done) =>  {
+	// it('should not edit existing issue when there is no data change', (done) =>  {
+	// 	// This should be one-for-one Db data
 	// 	let data = {
 	// 		project: 'FCC',
-	// 		title: 'We are testing',
+	// 		title: 'We are testing and issue' ,
 	// 		description: 'Test has no description',
 	// 		creator: 'Teddy Wells',
 	// 		assignee: 'Brian Smith',
 	// 		open: true,
 	// 		status: 'In-progress'
 	// 	}
-	// 	chai.request(server)
-	// 		.post('/new/FCC')
-	// 		.set('content-type', 'application/x-www-form-urlencoded')
-	// 		.send(data)
-	// 		.end((err, res) => {
-	// 			assert.equal(res.status, 200)
-	// 			done()
-	// 		})
-	// })
-
-	// it('Edit issue in database', (done) =>  {
-	// 	  let randomNumber = Math.random()
-	//   	let data = {
-	// 		project: 'FCC',
-	// 		title: 'We are testing' + randomNumber ,
-	// 		description: 'Test has no description',
-	// 		creator: 'Teddy Wells',
-	// 		assignee: 'Brian Smith',
-	// 		open: true,
-	// 		status: 'In-progress'
-	// 	}
-	// 	let id = '5b548e8dbd6bb713d6cc3310' //Insert real DB id here
+	// 	let id = '5b66e0fa69a96330d435f604' //Insert real DB id here
 	// 	chai.request(server)
 	// 		.put('/edit/FCC/'+ id)
 	// 		.send(data)
 	// 		.end((err, res) => {
 	// 			assert.equal(res.status, 200)
-	// 			assert.equal(res.text, 'Issue ' + id + ' was successfully updated.')
+	// 			assert.equal(res.text, 'There are no fields to update.')
 	// 			done()
 	// 		})
 	// })
 
-	// it('Issue should not be deleted', (done) =>  {
-	// 	let id = '5b548e6562ad2813d18679d5'
+	// it('should not edit if body is empty', (done) =>  {
+	// 	let id = '5b66e0d1486b6a30d0c437ed' //Insert real DB id here
 	// 	chai.request(server)
-	// 		.delete('/issues/FCC/'+ id)
+	// 		.put('/edit/FCC/'+ id)
+	// 		.send({})
 	// 		.end((err, res) => {
-	// 			assert.equal(res.text, 'Could not find issue indatabse.')
+	// 			assert.equal(res.status, 200)
+	// 			assert.equal(res.text, 'Missing request body.')
 	// 			done()
 	// 		})
 	// })
+
+	// it('should get issue with no filters added', (done)  =>  {
+	// 	chai.request(server)
+	// 		.get('/issues/')
+	// 		.query({})
+	// 		.end((err, res) => {
+	// 			const dom = new JSDOM(res.text)
+	// 			let output = dom.window.document.body.querySelector('.display-issue').textContent
+	// 			assert.equal(res.status, 200)
+	// 			assert.isAtLeast(output.length, 90, 'output is greater or equal to 90')
 	//
+	// 			done()
+	// 		})
+	// })
+
+// it('should get issue with one filter', (done)  =>  {
+// 	chai.request(server)
+// 		.get('/issues/')
+// 		.query({ project: 'FCC' })
+// 		.end((err, res) => {
+// 			const dom = new JSDOM(res.text)
+// 			let output = dom.window.document.body.querySelector('.display-issue').textContent
+// 			console.log(output)
+// 			assert.equal(res.status, 200)
+// 			assert.isAtLeast(output.length, 90, 'output is greater or equal to 90')
+//
+// 			done()
+// 		})
+// })
+
+	it('should get issue with multiple filters', (done)  =>  {
+		chai.request(server)
+			.get('/issues/FCC')
+			.query({ project: 'FCC', filter : 'on' })
+			.end((err, res) => {
+				const dom = new JSDOM(res.text)
+				let output = dom.window.document.body.querySelector('.display-issue').textContent
+				assert.equal(res.status, 200)
+				assert.isAtLeast(output.length, 90, 'output is greater or equal to 90')
+				done()
+			})
+	})
 
 
 })
