@@ -3,12 +3,12 @@ const Issue = require('../models/issue')
 exports.getIssues = (req, res, next) => {
 	const { project, filter } = req.query
 	let dbIssues = []
-
+	let projects = ['FCC','Testing','Javascript']
 	Issue.find({}, (err, issues) => {
 		if (err) {
 			return next(err)
 		}
-		if (project == 'All') {
+		if (project == 'All' || (Object.keys(req.body).length === 0 && req.body.constructor === Object) && !projects.includes(project)) {
 			if (filter == 'on') {
 				dbIssues = issues.filter(issue => issue.open == false)
 			} else {
@@ -76,7 +76,6 @@ exports.editIssue = (req, res, next) => {
 	let { project, title, description, creator, assignee, status } = req.body
 
 	if (Object.keys(req.body).length === 0 && req.body.constructor === Object){
-		console.log('test')
 		res.end('Missing request body.')
 	}
 
