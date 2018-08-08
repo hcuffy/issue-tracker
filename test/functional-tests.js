@@ -147,7 +147,6 @@ describe('Intergration Testing', () =>  {
 			.end((err, res) => {
 				const dom = new JSDOM(res.text)
 				let output = dom.window.document.body.querySelector('.display-issue').textContent
-				console.log(output)
 				assert.equal(res.status, 200)
 				assert.isAtLeast(output.length, 90, 'output is greater or equal to 90')
 
@@ -185,7 +184,7 @@ describe('Intergration Testing', () =>  {
 			.delete('/issues/FCC/887879b4f8762330cc4b3983')
 			.end((err, res) => {
 				assert.equal(res.status, 200)
-		  assert.equal(res.text, 'Could not find issue in database.')
+		    assert.equal(res.text, 'Could not find issue in database.')
 				done()
 			})
 	})
@@ -195,7 +194,6 @@ describe('Intergration Testing', () =>  {
 		chai.request(server)
 			.delete('/issues/FCC/' + id)
 			.end((err, res) => {
-				console.log(res.text)
 				assert.equal(res.status, 200)
 				assert.equal(res.text, 'success')
 				done()
